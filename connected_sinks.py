@@ -61,27 +61,19 @@ def find_connected_sinks(grid):
         current = queue.popleft()
         x, y = current
         obj = grid[current]
-
-        print(f"Visiting: {current}, Object: {obj}")  # Debugging print to see the current cell
         
         if obj.isupper():
             sinks.add(obj)
         
         for neighbor in get_neighbors(x, y, obj):
-            print(f"Checking neighbor: {neighbor}")  # Debugging print to see the neighbor
             if neighbor in grid and neighbor not in visited:
                 if is_valid_connection(current, neighbor, grid):
-                    print(f"Valid connection: {current} -> {neighbor}")  # Debugging print for valid connection
                     queue.append(neighbor)
-                    visited.add(neighbor)
-                else:
-                    print(f"Invalid connection: {current} -> {neighbor}")  # Debugging print for invalid connection
-    
+                    visited.add(neighbor)    
     return ''.join(sorted(sinks))
 
 def connected_sinks(file_path):
     grid = read_input(file_path)
-    print("Grid:", grid)  # Debugging print to see the grid structure
     return find_connected_sinks(grid)
 
 # Example usage:
