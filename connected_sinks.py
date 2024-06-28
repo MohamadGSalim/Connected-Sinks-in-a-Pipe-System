@@ -68,5 +68,6 @@ def connected_sinks(file_path):
     return find_connected_sinks(grid)
 
 # Example usage:
-result = connected_sinks('coding_qual_input.txt')
+# result = connected_sinks('coding_qual_input.txt')
+result = connected_sinks('example_pipe_system.txt')
 print(result)
