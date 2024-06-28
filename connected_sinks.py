@@ -36,10 +36,20 @@ def is_valid_connection(a, b, grid):
         return False
     a_obj = grid[a]
     b_obj = grid[b]
-    if b_obj in pipe_connections:
-        reverse_connections = [(dx, dy) for dx, dy in get_neighbors(*b, b_obj)]
-        return a in reverse_connections
-    return True
+
+    if a_obj == '*' or a_obj.isupper():  # Source or sink
+        return True
+    
+    if b_obj == '*' or b_obj.isupper():  # Source or sink
+        return True
+    
+    if a_obj in pipe_connections:
+        possible_a_connections = [(a[0] + dx, a[1] + dy) for dx, dy in pipe_connections[a_obj]]
+        if b in possible_a_connections:
+            reverse_connections = [(b[0] + dx, b[1] + dy) for dx, dy in pipe_connections[b_obj]]
+            if a in reverse_connections:
+                return True
+    return False
 
 def find_connected_sinks(grid):
     source = next(pos for pos, obj in grid.items() if obj == '*')
@@ -51,23 +61,30 @@ def find_connected_sinks(grid):
         current = queue.popleft()
         x, y = current
         obj = grid[current]
+
+        print(f"Visiting: {current}, Object: {obj}")  # Debugging print to see the current cell
         
         if obj.isupper():
             sinks.add(obj)
         
         for neighbor in get_neighbors(x, y, obj):
+            print(f"Checking neighbor: {neighbor}")  # Debugging print to see the neighbor
             if neighbor in grid and neighbor not in visited:
                 if is_valid_connection(current, neighbor, grid):
+                    print(f"Valid connection: {current} -> {neighbor}")  # Debugging print for valid connection
                     queue.append(neighbor)
                     visited.add(neighbor)
+                else:
+                    print(f"Invalid connection: {current} -> {neighbor}")  # Debugging print for invalid connection
     
     return ''.join(sorted(sinks))
 
 def connected_sinks(file_path):
     grid = read_input(file_path)
+    print("Grid:", grid)  # Debugging print to see the grid structure
     return find_connected_sinks(grid)
 
 # Example usage:
 # result = connected_sinks('coding_qual_input.txt')
 result = connected_sinks('example_pipe_system.txt')
-print(result)
+print("Result:", result)
