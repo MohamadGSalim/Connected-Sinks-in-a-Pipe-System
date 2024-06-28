@@ -24,6 +24,7 @@ The source and sinks are treated as having pipe openings on all their edges. For
 ## Input File Format
 
 The input file specifies the location of objects in the grid. Each row contains:
+
 - The character representing the object (`'*'`, an uppercase letter, or a pipe).
 - The x-coordinate of the object in the grid.
 - The y-coordinate of the object in the grid.
@@ -33,12 +34,15 @@ Coordinates have a minimum value of 0.
 ### Example Input File
 
 The following example represents a pipe system:
+
 ```
 * ╣   ╔ ═ A
   ╠ ═ ╝    
   C   ╚ ═ B
 ```
+
 Below are the contents of an input file that specifies the example pipe system illustrated above. The order of the rows within the file is arbitrary, so the rows could be given in any order.
+
 ```
 * 0 2
 C 1 0
