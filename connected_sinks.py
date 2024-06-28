@@ -2,16 +2,16 @@ from collections import deque
 
 # Pipe connectivity mapping
 pipe_connections = {
-    '═': [(0, -1), (0, 1)],        # left, right
-    '║': [(-1, 0), (1, 0)],        # up, down
-    '╔': [(1, 0), (0, 1)],         # down, right
-    '╗': [(1, 0), (0, -1)],        # down, left
-    '╚': [(0, 1), (-1, 0)],        # right, up
-    '╝': [(0, -1), (-1, 0)],       # left, up
-    '╠': [(0, -1), (1, 0), (0, 1)],# left, down, right
-    '╣': [(0, -1), (1, 0), (0, 1)],# left, down, right
-    '╦': [(-1, 0), (0, -1), (0, 1)],# up, left, right
-    '╩': [(1, 0), (0, -1), (0, 1)] # down, left, right
+    '═': [(-1, 0), (1, 0)],        # left, right
+    '║': [(0, 1), (0, -1)],        # up, down
+    '╔': [(0, -1), (1, 0)],         # down, right
+    '╗': [(0, -1), (-1, 0)],        # down, left
+    '╚': [(1, 0), (0, 1)],        # right, up
+    '╝': [(-1, 0), (0, 1)],       # left, up
+    '╠': [(0, 1), (0, -1), (1, 0)],# up, down, right
+    '╣': [(-1, 0), (0, -1), (0, 1)],# left, down, up
+    '╦': [(0, -1), (-1, 0), (1, 0)],# down, left, right
+    '╩': [(0, 1), (-1, 0), (1, 0)] # up, left, right
 }
 
 def read_input(file_path):
